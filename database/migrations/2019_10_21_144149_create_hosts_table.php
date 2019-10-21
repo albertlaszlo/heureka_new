@@ -13,6 +13,7 @@ class CreateHostsTable extends Migration
      */
     public function up()
     {
+        // tábla létrehozás
         Schema::create('hosts', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
