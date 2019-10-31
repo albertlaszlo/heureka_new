@@ -11,6 +11,8 @@
 |
 */
 
-Route::get('/', function () {
+Route::get('/hosts', 'HostController@index');
+
+Route::get('/{any}', function () {
     return view('welcome');
-});
+})->where('any', '.*');
