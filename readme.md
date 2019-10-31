@@ -83,7 +83,7 @@ Valami szoveg .
 
 
 
-
+Lóri vagyok
 
 
 
