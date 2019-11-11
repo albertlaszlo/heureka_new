@@ -12,18 +12,24 @@ class HostController extends Controller
 
         $search = $request->search;
         return Host::
-            select(['name', 'description'])
-            ->where('name', "LIKE", "%$search%")
+            // select(['name', 'description'])
+            where('name', "LIKE", "%$search%")
             ->orWhere('description', "LIKE", "%$search%")
             // ->whereIn('id', [1,2])
             ->orderBy('name')
             ->get();
     }
 
-    function create() {
-        return Host::create([
-            'name' => $search,
-            'description' => 'sdfsdg', 
-        ]);
+    function create(Request $request) {
+        
+        // return $request->all();
+
+        $form = $request->all();
+        dump ($form);
+        return Host::create($request->all());
+    }
+
+    function delete(Host $host) {
+        return $host->delete();
     }
 }

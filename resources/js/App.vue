@@ -3,12 +3,20 @@
         <input v-model="search" @change="onChange">
         <ul>
             <li v-for="host in hosts" v-bind:key="host.id">
-                {{ host.name }} {{ host }}
+                {{ host.name }} ({{ host.id }})
+                <button @click="onRemove(host.id)">Remove</button>
             </li>
         </ul>
         <div>
             {{ search }}
         </div>
+
+        <hr>
+        <input v-model="form.name" /> <br>
+        <input v-model="form.description" /> <br>
+        <input v-model="form.city" /> <br>
+        <button @click="onAdd">Add</button>
+        {{ form }}
     </div>
 </template>
 
@@ -23,6 +31,11 @@ export default {
         return {
             search: '',
             hosts: [],
+            form: {
+                name: '',
+                description: '',
+                city: '',
+            }
         }
     },
     components: {
@@ -39,6 +52,16 @@ export default {
     //     }
     // },
     methods: {
+        async onAdd() {
+            console.log('add', this.form)
+            const response = await axios.post('/hosts/', this.form).catch(error => console.log(error))
+            this.getData()
+        },
+        async onRemove(id) {
+            console.log('remove', id)
+            const response = await axios.delete('/hosts/'+id).catch(error => console.log(error))
+            this.getData()
+        },
         async onChange() {
             console.log('change', this.search)
             const response = await axios.get('/hosts/', {

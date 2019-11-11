@@ -12,6 +12,9 @@
 */
 
 Route::get('/hosts', 'HostController@index');
+Route::post('/hosts', 'HostController@create');
+// Route::patch('/hosts/{id}', 'HostController@update');
+Route::delete('/hosts/{host}', 'HostController@delete');
 
 Route::get('/{any}', function () {
     return view('welcome');
