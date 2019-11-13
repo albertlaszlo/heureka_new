@@ -16,6 +16,9 @@ Route::post('/hosts', 'HostController@create');
 // Route::patch('/hosts/{id}', 'HostController@update');
 Route::delete('/hosts/{host}', 'HostController@delete');
 
+Route::get('/hosts/{host}/free-tables', 'HostController@freeTables');
+Route::post('/hosts/{host}/reserve', 'HostController@reserve');
+
 Route::post('/fileUpload', 'HostController@fileUpload');
 
 Route::get('/{any}', function () {

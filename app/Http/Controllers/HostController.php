@@ -7,7 +7,21 @@ use App\Host;
 
 class HostController extends Controller
 {
-    //
+
+    function reserve(Request $request, Host $host) {
+
+        $request->validate([
+            'email' => 'required|email',
+            'nrOfChairs' => 'required|numeric|max:40',
+        ]);
+
+        return ['success'=> true];
+    }
+
+    function freeTables(Host $host) {
+        return $host->freeTables('2019-12-10 14:00:00', '2019-12-10 16:00:00');
+    }
+
     function index(Request $request) {
 
         $search = $request->search;

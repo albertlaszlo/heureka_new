@@ -12,4 +12,18 @@ class Host extends Model
     {
         return $this->hasMany('App\Table');
     }
+
+    public function freeTables($start, $end) {
+        $table_ids = $this->tables()
+            ->select('tables.id')
+            ->where('tables.host_id', '=', 1)
+            ->join('reservations', 'tables.id', '=', 'reservations.table_id')
+            ->where('reservations.end', '>', $start)
+            ->where('reservations.start', '<', $end)
+            ->get();
+        return $this->tables()
+            ->select('*')
+            ->whereNotIn('tables.id', $table_ids)
+            ->get();
+    }
 }

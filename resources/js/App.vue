@@ -24,12 +24,13 @@
     <pre>
     {{ form }}
     </pre>
+    <reservation-form />
+    <hr />
   </div>
 </template>
 
 <script>
-// import Login from "./components/layout/Login.vue";
-// const axios = require('axios')
+import ReservationForm from "./components/ReservationForm.vue";
 import axios from "axios";
 
 export default {
@@ -43,12 +44,11 @@ export default {
         description: "",
         city: "",
         logo: ""
-      },
-      selectedFile: null
+      }
     };
   },
   components: {
-    // Login
+    ReservationForm
   },
   mounted() {
     this.getData();
