@@ -16,6 +16,8 @@ Route::post('/hosts', 'HostController@create');
 // Route::patch('/hosts/{id}', 'HostController@update');
 Route::delete('/hosts/{host}', 'HostController@delete');
 
+Route::post('/fileUpload', 'HostController@fileUpload');
+
 Route::get('/{any}', function () {
     return view('welcome');
 })->where('any', '.*');

@@ -32,4 +32,20 @@ class HostController extends Controller
     function delete(Host $host) {
         return $host->delete();
     }
+
+    function fileUpload(Request $request) {
+        if ($request->hasFile('logo')) {
+            $path = $request->file('logo')->store('logos', 'public');
+            return [
+                'message' => 'Upload success.',
+                'path' => $path,
+                'name' => 'logo',
+                'status' => 200
+            ];
+        }
+
+        return [
+            'success' => false
+        ];
+    }
 }
