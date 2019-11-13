@@ -15,7 +15,9 @@
         <input v-model="form.name" /> <br>
         <input v-model="form.description" /> <br>
         <input v-model="form.city" /> <br>
-        <button @click="onAdd">Add</button>
+        <button @click="onAdd">Add</button> <br>
+        <input type="file"  @change="onFileChanged" /> <br>
+        <button @click="onUpload">Upload!</button>
         {{ form }}
     </div>
 </template>
@@ -35,7 +37,8 @@ export default {
                 name: '',
                 description: '',
                 city: '',
-            }
+            },
+             selectedFile:null
         }
     },
     components: {
@@ -50,7 +53,12 @@ export default {
     //     search(val) {
     //         console.log(val)
     //     }
-    // },
+     //},
+    /*data() {
+                  return{
+                      selectedFile:null
+                  }
+    },     */                                                                                
     methods: {
         async onAdd() {
             console.log('add', this.form)
@@ -76,6 +84,12 @@ export default {
             const response = await axios.get('/hosts/').catch(error => console.log(error))
             this.hosts = response.data
             console.log('get data end')
+        },
+        onFileChanged(event) {
+            const file = event.target.files[0]
+        },
+        onUpload() {
+            axios.post('http://127.0.0.1:8000', this.selectedFile)
         }
     }
 }
