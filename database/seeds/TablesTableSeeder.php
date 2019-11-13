@@ -16,7 +16,7 @@ class TablesTableSeeder extends Seeder
             DB::table('tables')->insert([
                 // 'id' => $id,
                 'host_id' => 1,
-                'name' => 'table ' . $id,
+                'name' => 'Table ' . $id,
                 'nr_of_chairs' => 4,
             ]);
         }

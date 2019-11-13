@@ -14,9 +14,9 @@ class HostsTableSeeder extends Seeder
         foreach (range(1,10) as $id) {
             DB::table('hosts')->insert([
                 // 'id' => $id,
-                'description' => 'desc '. $id,
-                'name' => 'table ' . $id,
-                'city' => 'city ' . $id,
+                'description' => 'Desc '. $id,
+                'name' => 'Host ' . $id,
+                'city' => 'City ' . $id,
             ]);
         }
     }
