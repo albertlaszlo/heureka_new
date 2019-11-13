@@ -9,7 +9,6 @@ class HostController extends Controller
 {
 
     function reserve(Request $request, Host $host) {
-
         $request->validate([
             'email' => 'required|email',
             'nrOfChairs' => 'required|numeric|max:40',
@@ -23,23 +22,11 @@ class HostController extends Controller
     }
 
     function index(Request $request) {
-
-        $search = $request->search;
-        return Host::
-            // select(['name', 'description'])
-            where('name', "LIKE", "%$search%")
-            ->orWhere('description', "LIKE", "%$search%")
-            // ->whereIn('id', [1,2])
-            ->orderBy('name')
-            ->get();
+        return Host::search($request->search);
     }
 
     function create(Request $request) {
-        
-        // return $request->all();
-
         $form = $request->all();
-        dump ($form);
         return Host::create($request->all());
     }
 

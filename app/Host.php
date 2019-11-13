@@ -26,4 +26,14 @@ class Host extends Model
             ->whereNotIn('tables.id', $table_ids)
             ->get();
     }
+
+    public static function search($search) {
+        // select(['name', 'description'])
+        return self::query()
+            ->where('name', "LIKE", "%$search%")
+            ->orWhere('description', "LIKE", "%$search%")
+            ->orWhere('city', "LIKE", "%$search%")
+            ->orderBy('name')
+            ->get();
+    }
 }
