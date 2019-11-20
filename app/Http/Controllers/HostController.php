@@ -37,11 +37,16 @@ class HostController extends Controller
     function fileUpload(Request $request) {
         if ($request->hasFile('logo')) {
             $path = $request->file('logo')->store('logos', 'public');
+        }
+
+        if ($request->hasFile('image')) {
+            $path = $request->file('image')->store('logos', 'public');
+        }
+
+        if (isset($path)) {
             return [
                 'message' => 'Upload success.',
                 'path' => $path,
-                'name' => 'logo',
-                'status' => 200
             ];
         }
 

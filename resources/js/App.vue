@@ -7,7 +7,8 @@
         <button @click="onRemove(host.id)">Remove</button>
       </li>
     </ul>
-    <div>{{ search }}</div>
+    <!-- <div>{{ search }}</div> -->
+    <reservation-form />
 
     <hr />
     <input v-model="form.name" />
@@ -18,19 +19,32 @@
     <br />
     <button @click="onAdd">Add</button>
     <br />
+
     <input type="file" @change="onFileChanged" />
     <img v-if="form.logo" :src="'storage/'+form.logo" height="42" width="42" />
+
     <br />
+    <button @click="form.images.push('')">Add Image</button>
+    <div v-for="(image, index) in form.images">
+      <image-uploader
+        @imageUploaded="(path) => imageUploaded(path, index)"
+        @imageRemoved="imageRemoved(index)"
+        :image="image"
+        :index="index"
+        :key="index"
+      />
+    </div>
+
     <pre>
     {{ form }}
     </pre>
-    <reservation-form />
     <hr />
   </div>
 </template>
 
 <script>
 import ReservationForm from "./components/ReservationForm.vue";
+import ImageUploader from "./components/ImageUploader.vue";
 import axios from "axios";
 
 export default {
@@ -43,12 +57,14 @@ export default {
         name: "",
         description: "",
         city: "",
-        logo: ""
+        logo: "",
+        images: []
       }
     };
   },
   components: {
-    ReservationForm
+    ReservationForm,
+    ImageUploader
   },
   mounted() {
     this.getData();
@@ -101,6 +117,14 @@ export default {
         formData
       );
       this.form.logo = response.data.path;
+    },
+    imageUploaded($path, index) {
+      this.$set(this.form.images, index, $path);
+      console.log("=== iu", $path, index);
+    },
+    imageRemoved(index) {
+      this.form.images.splice(index, 1);
+      console.log("=== ir", index);
     }
   }
 };
