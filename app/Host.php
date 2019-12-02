@@ -13,6 +13,11 @@ class Host extends Model
         return $this->hasMany('App\Table');
     }
 
+    public function images()
+    {
+        return $this->hasMany('App\Image');
+    }
+
     public function freeTables($start, $end) {
         $table_ids = $this->tables()
             ->select('tables.id')

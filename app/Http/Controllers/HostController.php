@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Host;
+use App\Image;
 
 class HostController extends Controller
 {
@@ -27,7 +28,19 @@ class HostController extends Controller
 
     function create(Request $request) {
         $form = $request->all();
-        return Host::create($request->all());
+        
+        // $comment = new App\Comment(['message' => 'A new comment.']);
+        // $post = App\Post::find(1);
+        // $post->comments()->save($comment);
+        $host = Host::create($request->all());
+        foreach ($form["images"] as $image) {
+            // dump (['image' => $image]);
+            $host->images()->save(new Image(['image' => $image]));
+        }
+        $host ->load('images');
+        return $host;
+
+
     }
 
     function delete(Host $host) {

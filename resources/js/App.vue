@@ -17,7 +17,7 @@
     <br />
     <input v-model="form.city" />
     <br />
-    <button @click="onAdd">Add</button>
+    <button @click="onAdd">Add Host</button>
     <br />
 
     <input type="file" @change="onFileChanged" />
