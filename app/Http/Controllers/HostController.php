@@ -23,24 +23,17 @@ class HostController extends Controller
     }
 
     function index(Request $request) {
-        return Host::search($request->search);
+        return Host::search($request->search, '2019-12-10 14:00:00', '2019-12-10 16:00:00');
     }
 
     function create(Request $request) {
         $form = $request->all();
-        
-        // $comment = new App\Comment(['message' => 'A new comment.']);
-        // $post = App\Post::find(1);
-        // $post->comments()->save($comment);
         $host = Host::create($request->all());
         foreach ($form["images"] as $image) {
-            // dump (['image' => $image]);
             $host->images()->save(new Image(['image' => $image]));
         }
         $host ->load('images');
         return $host;
-
-
     }
 
     function delete(Host $host) {
