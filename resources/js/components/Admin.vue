@@ -75,8 +75,8 @@ export default {
         name: "",
         description: "",
         city: "",
-        logo: "sdf",
-        images: ['sdfsd']
+        logo: "",
+        images: ['']
       },
       errors: {}
     };
