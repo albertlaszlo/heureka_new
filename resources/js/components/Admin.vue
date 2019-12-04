@@ -1,13 +1,5 @@
 <template>
-  <div id="admin">
-    <ul>
-      <li v-for="host in hosts" v-bind:key="host.id">
-        {{ host.name }} ({{ host.id }}) {{host.status}} 
-        <button @click="onRemove(host.id)">Remove</button>
-      </li>
-    </ul>
-    <hr />
-    
+  <div id="admin">    
     <label>Name</label>
     <input v-model="form.name" />
     <span v-if="errors.name">
@@ -27,8 +19,6 @@
     <span v-if="errors.city">
       <span v-for="error in errors.city">{{ error }}</span>
     </span>
-    <br />
-    <button @click="onAdd">Add Host</button>
     <br />
 
     <label>Logo</label>
@@ -52,17 +42,28 @@
       />
     </div>
 
+    <button @click="onAdd">Add Host</button>
+    <br />
+
     <pre>
     {{ form }}
     {{ errors }}
     </pre>
     <hr />
+
+    <ul>
+      <li v-for="host in hosts" v-bind:key="host.id">
+        {{ host.name }} ({{ host.id }}) {{ host.tables.length }} {{ host.tables.reduce( (sum, table) => sum + table.nr_of_chairs, 0 ) }}
+        <button @click="onRemove(host.id)">Remove</button>
+      </li>
+    </ul>
+    <hr />
+
 </div>
 </template>
 
 <script>
 import ImageUploader from "./ImageUploader.vue";
-
 import axios from "axios";
 
 export default {
@@ -74,8 +75,8 @@ export default {
         name: "",
         description: "",
         city: "",
-        logo: "",
-        images: []
+        logo: "sdf",
+        images: ['sdfsd']
       },
       errors: {}
     };
@@ -88,12 +89,10 @@ export default {
   },
   methods: {
     async getData() {
-      console.log("get data start");
       const response = await axios
         .get("/hosts/")
         .catch(error => console.log(error));
       this.hosts = response.data;
-      console.log("get data end");
     },
     async onFileChanged(event) {
       const formData = new FormData();
