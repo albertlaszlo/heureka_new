@@ -1,12 +1,20 @@
 <template>
   <div id="app">
     <input v-model="search" @change="onChange" />
+
     <ul>
       <li v-for="host in hosts" v-bind:key="host.id">
-        {{ host.name }} ({{ host.id }})
+        {{ host.name }} ({{ host.id }}) {{host.status}} 
         <button @click="onRemove(host.id)">Remove</button>
       </li>
     </ul>
+     <br/>
+    <input v-model="day" placeholder="add day"/>
+    <input v-model="start" placeholder="add start time"/>
+    <input v-model="end" placeholder="add end time"/>
+    <br/>
+    <button @click="SearchTimeClick()">SearchTime</button>
+    <br/>
     <!-- <div>{{ search }}</div> -->
     <reservation-form />
 
@@ -53,6 +61,9 @@ export default {
     return {
       search: "",
       hosts: [],
+      day: "",
+      start: "",
+      end: "",
       form: {
         name: "",
         description: "",
@@ -83,6 +94,11 @@ export default {
         .catch(error => console.log(error));
       this.getData();
     },
+
+    async SearchTimeClick(){
+      console.log("getStartTime: ", this.day, this.start, this.end);
+    },
+
     async onRemove(id) {
       console.log("remove", id);
       const response = await axios

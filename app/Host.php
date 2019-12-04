@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Host extends Model
 {
-    protected $fillable = ['name', 'description', 'logo', 'city', 'street', 'nr'];
+    protected $fillable = ['name', 'description', 'logo', 'city', 'street', 'nr' , 'status'];
 
     public function tables()
     {
