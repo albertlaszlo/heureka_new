@@ -13,6 +13,6 @@ export default new Router({
     routes: [
         { path: "/admin", name: "admin", component: Admin },
         { path: "/", name: "search", component: Home },
-        { path: "/reservation", name: "reservation", component: Reservation }
+        { path: "/reservation/:id", name: "reservation", component: Reservation }
     ]
 });

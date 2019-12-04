@@ -49,9 +49,13 @@ export default {
     };
   },
   methods: {
-    onReserve(host_id) {
-        console.log(host_id);
-        localStorage.setItem('heureka_data', JSON.stringify(this.form));
+    onReserve(id) {
+        localStorage.setItem('heureka_data', JSON.stringify({... this.form, ...{
+            start: `${this.form.day} ${this.form.start}:00`,
+            end: `${this.form.day} ${this.form.end}:00`,
+        }}));
+        // this.$router.go('reservations');
+        this.$router.push({name: "reservation", params: {id}});
     },
     hasFreeTable(host) {
         const goodTables = host.free_tables.filter(table => table.nr_of_chairs >= this.form.persons);

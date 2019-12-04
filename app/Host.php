@@ -13,6 +13,11 @@ class Host extends Model
         return $this->hasMany('App\Table');
     }
 
+    public function reservations()
+    {
+        return $this->hasMany('App\Reservation');
+    }
+
     public function images()
     {
         return $this->hasMany('App\Image');
