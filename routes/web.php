@@ -12,6 +12,7 @@
 */
 
 Route::get('/hosts', 'HostController@index');
+Route::get('/hosts/search', 'HostController@search');
 Route::post('/hosts', 'HostController@create');
 // Route::patch('/hosts/{id}', 'HostController@update');
 Route::delete('/hosts/{host}', 'HostController@delete');

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Host;
 use App\Image;
+use App\Table;
 
 class HostController extends Controller
 {
@@ -23,6 +24,10 @@ class HostController extends Controller
     }
 
     function index(Request $request) {
+        return Host::with(['tables', 'images'])->get();
+    }
+
+    function search(Request $request) {
         // return $request->all();
         $request->validate([
             'search' => 'required|string',
@@ -47,7 +52,14 @@ class HostController extends Controller
         foreach ($form["images"] as $image) {
             $host->images()->save(new Image(['image' => $image]));
         }
+        foreach (range(1, $host->id % 5 + 7) as $id) {
+            $host->tables()->save(new Table([
+                'name' => 'Table ' . $id,
+                'nr_of_chairs' => ($host->id + $id) % 6 + 1,
+            ]));
+        }
         $host ->load('images');
+        $host ->load('tables');
         return $host;
     }
 
