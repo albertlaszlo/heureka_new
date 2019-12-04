@@ -27,6 +27,15 @@ class HostController extends Controller
     }
 
     function create(Request $request) {
+        $request->validate([
+            'logo' => 'required|string',
+            'name' => 'required|string',
+            'city' => 'required|string',
+            'description' => 'required|string',
+            'images' => 'array|min:1',
+            'images.*' => 'string',
+        ]);
+
         $form = $request->all();
         $host = Host::create($request->all());
         foreach ($form["images"] as $image) {
@@ -37,7 +46,8 @@ class HostController extends Controller
     }
 
     function delete(Host $host) {
-        return $host->delete();
+        $success = $host->delete();
+        return ['success' => $success];
     }
 
     function fileUpload(Request $request) {
