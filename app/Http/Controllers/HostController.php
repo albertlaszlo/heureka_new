@@ -23,6 +23,11 @@ class HostController extends Controller
     }
 
     function index(Request $request) {
+        // return $request->all();
+        $request->validate([
+            'start' => 'regex:/[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}:[0-9]{2}/i',
+            'end' => 'regex:/[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}:[0-9]{2}/i',
+        ]);
         return Host::search($request->search, '2019-12-10 14:00:00', '2019-12-10 16:00:00');
     }
 

@@ -62,7 +62,6 @@
 
 <script>
 import ImageUploader from "./ImageUploader.vue";
-
 import axios from "axios";
 
 export default {
