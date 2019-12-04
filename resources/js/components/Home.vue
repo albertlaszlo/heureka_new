@@ -1,24 +1,30 @@
 <template>
   <div id="home">
-    <input v-model="search" />
+    <input v-model="form.search" />
     <span v-if="errors.search">
       <span v-for="error in errors.search">{{ error }}</span>
     </span>
-    <input v-model="day" type="date" placeholder="add day"/>
-    <input v-model="start" type="time" placeholder="add start time"/>
+    <input v-model="form.day" type="date" placeholder="add day"/>
+    <input v-model="form.start" type="time" placeholder="add start time"/>
     <span v-if="errors.start">
       <span v-for="error in errors.start">{{ error }}</span>
     </span>
-    <input v-model="end" type="time" placeholder="add end time"/>
+    <input v-model="form.end" type="time" placeholder="add end time"/>
     <span v-if="errors.end">
       <span v-for="error in errors.end">{{ error }}</span>
+    </span>
+    <input v-model="form.persons" min="1" type="number" placeholder="persons"/>
+    <span v-if="errors.persons">
+      <span v-for="error in errors.persons">{{ error }}</span>
     </span>
     <br/>
     <button @click="onSearch">Search</button>
     <ul>
       <li v-for="host in hosts" v-bind:key="host.id">
-        {{ host.name }} ({{ host.id }}) {{host.free_table }}
-        <button v-if="host.free_tables.length > 0" @click="onReserve(host.id)">Reserve</button>
+        {{ host.name }} ({{ host.id }}) {{host.free_tables.length }} {{ host.free_tables.reduce( (sum, table) => sum + table.nr_of_chairs, 0 ) }}
+        <button
+            v-if="hasFreeTable(host)"
+            @click="onReserve(host.id)">Reserve</button>
       </li>
     </ul>
      <br/>
@@ -31,30 +37,35 @@ import axios from "axios";
 export default {
   data() {
     return {
-      search: "",
       hosts: [],
-      day: "",
-      start: "",
-      end: "",
       form: {
-        name: "",
-        description: "",
-        city: "",
-        logo: "",
-        images: []
+        search: "Host",
+        day: "2019-12-10",
+        start: "14:00",
+        end: "16:00",
+        persons: 1,
       },
       errors: {}
     };
   },
   methods: {
+    onReserve(host_id) {
+        console.log(host_id);
+        localStorage.setItem('heureka_data', JSON.stringify(this.form));
+    },
+    hasFreeTable(host) {
+        const goodTables = host.free_tables.filter(table => table.nr_of_chairs >= this.form.persons);
+        return goodTables.length > 0;
+    },
     async onSearch() {
       try {
       const response = await axios
-        .get("/hosts/", {
+        .get("/hosts/search", {
           params: {
-            search: this.search,
-            start: `${this.day} ${this.start}:00`,
-            end: `${this.day} ${this.end}:00`,
+            search: this.form.search,
+            start: `${this.form.day} ${this.form.start}:00`,
+            end: `${this.form.day} ${this.form.end}:00`,
+            persons: this.form.persons,
           }
         })
         this.hosts = response.data;

@@ -30,7 +30,7 @@ class HostController extends Controller
     function search(Request $request) {
         // return $request->all();
         $request->validate([
-            'search' => 'required|string',
+            // 'search' => 'string',
             'start' => 'required|regex:/[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}:[0-9]{2}/i',
             'end' => 'required|regex:/[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}:[0-9]{2}/i',
         ]);
