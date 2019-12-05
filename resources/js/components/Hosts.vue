@@ -12,18 +12,18 @@
         <div class="search-box">
           <form v-on:submit.prevent="onSearch" action="">
             <div class="search-bar">
-              <input @input="onSearch" v-model="form.search" type="text" placeholder="Keress ra erre: “Kalapos, Szekelyudvarhely”">
+              <input @blur="onSearch" v-model="form.search" type="text" placeholder="Keress ra erre: “Kalapos, Szekelyudvarhely”">
             </div>
             <div class="time-and-date_wrapper">
               <div class="date-box">
-                <input @input="onSearch"  v-model="form.day" type="date"/>
+                <input @blur="onSearch"  v-model="form.day" type="date"/>
               </div>
               <div class="time-selector">
                 <div class="time-box_start">
-                  <input @input="onSearch"  v-model="form.start" type="time" />
+                  <input @blur="onSearch"  v-model="form.start" type="time" />
                 </div>
                 <div class="time-box_end">
-                  <input @input="onSearch"  v-model="form.end" type="time" />
+                  <input @blur="onSearch"  v-model="form.end" type="time" />
                 </div>
               </div>
             </div>
@@ -35,9 +35,11 @@
                   <option name="5 vendeg" id=""> 5 vendeg</option>
                   <option name="5-10 vendeg"   id=""> 5-10 vendeg</option>
               </select> -->
-              <input v-model="form.persons" min="1" type="number" placeholder="persons"/>
+              <input @change="onSearch" v-model="form.persons" min="1" type="number" placeholder="persons"/>
             </div>
-            <button>Search</button>  
+
+            <!-- <button>Search</button>   -->
+
             <div class="place">
               <div v-for="host in hosts" :key="host.id" class="box">
                 <div class="pictures">
