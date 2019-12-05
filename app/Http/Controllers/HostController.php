@@ -11,9 +11,9 @@ use App\Reservation;
 class HostController extends Controller
 {
 
-    function freeTables(Host $host) {
-        return $host->freeTables('2019-12-10 14:00:00', '2019-12-10 16:00:00');
-    }
+    // function freeTables(Host $host) {
+    //     return $host->freeTables('2019-12-10 14:00:00', '2019-12-10 16:00:00');
+    // }
 
     function index(Request $request) {
         return Host::with(['tables', 'images'])->get();

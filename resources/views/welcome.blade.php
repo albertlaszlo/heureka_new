@@ -9,12 +9,13 @@
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
 
+        <link rel="stylesheet" type="text/css" href="{{ mix('css/normalize.css') }}">
         <link rel="stylesheet" type="text/css" href="{{ mix('css/app.css') }}">
     </head>
     <body>
         <div id="app">
-        </div>
 
+        </div>
         <script src="{{ mix('js/app.js') }}"></script>
     </body>
 </html>

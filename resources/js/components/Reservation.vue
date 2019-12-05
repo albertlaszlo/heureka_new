@@ -5,9 +5,7 @@
         <label>Email</label>
         <input v-model="form.email" />
         <span v-if="errors.email">
-        <!-- <span v-for="error in errors.email">{{ error }}</span> -->
         </span>
-
         <pre>
         {{ form }}
         </pre>
@@ -51,6 +49,3 @@ export default {
 }
 
 </script>
-
-<style>
-</style>

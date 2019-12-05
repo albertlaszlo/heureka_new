@@ -23,7 +23,7 @@
 
     <label>Logo</label>
     <input type="file" @change="onFileChanged" />
-    <img v-if="form.logo" :src="'storage/'+form.logo" height="42" width="42" />
+    <img v-if="form.logo" :src="'http://127.0.0.1:8000/storage/'+form.logo" height="42" width="42" />
     <span v-if="errors.logo">
       <span v-for="error in errors.logo">{{ error }}</span>
     </span>
@@ -51,12 +51,12 @@
     </pre>
     <hr />
 
-    <!-- <ul>
+    <ul>
       <li v-for="host in hosts" v-bind:key="host.id">
         {{ host.name }} ({{ host.id }}) {{ host.tables.length }} {{ host.tables.reduce( (sum, table) => sum + table.nr_of_chairs, 0 ) }}
         <button @click="onRemove(host.id)">Remove</button>
       </li>
-    </ul> -->
+    </ul>
     <hr />
 
 </div>

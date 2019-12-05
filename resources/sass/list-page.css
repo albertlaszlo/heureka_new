@@ -1,0 +1,130 @@
+body#list_page{ 
+    font-family: Nunito, sans-serif;
+    background-size: 100vw;
+}
+
+.find-pubs{
+    position: absolute;
+    width: 100vw;
+    background-color: #fff;
+    border-bottom: 0.1em;
+    
+}
+
+.app-header{
+    position: relative;
+    width: 100vw;
+    padding-left: 1em;
+    padding-top: 1em;
+}
+
+.home-button{
+    position: absolute;
+    top: 50%;
+}
+
+h1{
+    text-align: center;
+    margin: 0;
+}
+
+#list_page form{
+    padding: 1em;
+    margin: 0;
+}
+
+#list_page input, 
+#list_page select{
+    width: 100%;
+    margin-top: 0.5em;
+    border: 0ch;
+    border-radius: 10px;
+}
+
+#list_page input, 
+#list_page select{
+    background: rgba(223, 222, 222, 0.2);
+    color: #000;
+    padding: 1em 0em;
+    padding-left: 0.5em;
+    box-sizing: border-box;
+    border: 0.5px solid #999;
+}
+
+.time_and_date_wrapper{
+    display: flex;
+    justify-content: space-between;
+}
+
+.time-box_start{
+    width: 50%;
+}
+
+.time-box_end{
+    width: 50%;
+    padding-left: 0.5em;
+}
+
+.place{
+    position: absolute;
+    width: 100vw;
+    background: #fff;
+    margin-top: 18px;
+    left: 0;
+    padding: 1em;
+    padding-top: 0em;
+    box-sizing: border-box;
+}
+
+.box{
+    position: relative;
+    border-radius: 10px;
+    background: #fff;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    box-sizing: border-box;
+    margin-top: 1em;
+}
+
+.pictures{
+    position: relative;
+    box-sizing: border-box;
+}
+
+.image{
+    border-radius: 10px 10px 0px 0px;
+    overflow: hidden;
+}
+
+.logo{
+    position: absolute;
+    border-radius: 50px;
+    bottom: -1.5rem;
+    left: 0.6em;
+    overflow: hidden;
+}
+ .info-wrapper{
+    margin-top: 1.5em;
+    position: relative;
+ }
+
+.place h2,h3{
+    text-align: left;
+    margin: 0 auto;
+    padding-left: 0.5em;
+}
+.reserve-button{
+    padding: 1em 0.5em 1em 0.5em;
+}
+
+.place button{
+    background: linear-gradient(99.47deg, #F8A170 14.73%, #FFCD61 97.52%);
+    padding: 0.5em 0em;
+    color: #fff;
+    letter-spacing: -0.02em;
+    font-weight: 800;
+    border-radius: 10px;
+    border: 0ch;
+    width: 100%;
+    display: block;
+    margin: 0 auto;
+}

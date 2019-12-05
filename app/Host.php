@@ -44,6 +44,7 @@ class Host extends Model
             ->orWhere('description', "LIKE", "%$search%")
             ->orWhere('city', "LIKE", "%$search%")
             ->orderBy('name')
+            ->with('tables', 'images')
             ->get();
         foreach ($hosts as $host) {
             $host->free_tables = $host->freeTables($start, $end);

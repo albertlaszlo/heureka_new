@@ -6,6 +6,7 @@ import Create from "./components/Create.vue";
 import Home from "./components/Home.vue";
 import Reservation from "./components/Reservation.vue";
 import Summary from "./components/Summary.vue";
+import Hosts from "./components/Hosts.vue";
 
 Vue.use(Router);
 
@@ -18,5 +19,6 @@ export default new Router({
         { path: "/", name: "search", component: Home },
         { path: "/reservation/:id", name: "reservation", component: Reservation },
         { path: "/summary/:id", name: "summary", component: Summary },
+        { path: "/hosts_list", name: "hosts_list", component: Hosts },
     ]
 });
