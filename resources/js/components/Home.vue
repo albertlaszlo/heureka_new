@@ -58,6 +58,9 @@ export default {
         this.$router.push({name: "reservation", params: {id}});
     },
     hasFreeTable(host) {
+        if (this.form.persons < 1) {
+          return false;
+        }
         const goodTables = host.free_tables.filter(table => table.nr_of_chairs >= this.form.persons);
         return goodTables.length > 0;
     },

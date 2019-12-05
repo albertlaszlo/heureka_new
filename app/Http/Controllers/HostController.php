@@ -16,9 +16,16 @@ class HostController extends Controller
             'email' => 'required|email',
             'persons' => 'required|numeric|max:40',
         ]);
-
+        
+        $table = Table::where('host_id', $host->id)
+            ->where('nr_of_chairs', '>=', $request->persons)
+            ->orderBy('nr_of_chairs')
+            // ->get();
+            ->first();
+        
         $toCreate = $request->all();
-        $toCreate['table_id'] = 1;
+        $toCreate['table_id'] = $table->id;
+        $toCreate['status'] = 'pending';
         $host->reservations()->save(new Reservation($toCreate));
         return ['success'=> true];
     }
