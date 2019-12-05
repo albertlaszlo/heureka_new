@@ -1,25 +1,65 @@
 <template>
   <div id="admin">    
-    <ul>
+    <label>Name</label>
+    <input v-model="form.name" />
+    <span v-if="errors.name">
+      <span v-for="error in errors.name">{{ error }}</span>
+    </span>
+    <br />
+    
+    <label>Description</label>
+    <input v-model="form.description" />
+    <span v-if="errors.description">
+      <span v-for="error in errors.description">{{ error }}</span>
+    </span>
+    <br />
+    
+    <label>City</label>
+    <input v-model="form.city" />
+    <span v-if="errors.city">
+      <span v-for="error in errors.city">{{ error }}</span>
+    </span>
+    <br />
+
+    <label>Logo</label>
+    <input type="file" @change="onFileChanged" />
+    <img v-if="form.logo" :src="'storage/'+form.logo" height="42" width="42" />
+    <span v-if="errors.logo">
+      <span v-for="error in errors.logo">{{ error }}</span>
+    </span>
+
+    <br />
+    <label>Images</label>
+    <button @click="form.images.push('')">Add Image</button>
+
+    <div v-for="(image, index) in form.images">
+      <image-uploader
+        @imageUploaded="(path) => imageUploaded(path, index)"
+        @imageRemoved="imageRemoved(index)"
+        :image="image"
+        :index="index"
+        :key="index"
+      />
+    </div>
+
+    <button @click="onAdd">Add Host</button>
+    <br />
+
+    <pre>
+    {{ form }}
+    {{ errors }}
+    </pre>
+    <hr />
+
+    <!-- <ul>
       <li v-for="host in hosts" v-bind:key="host.id">
         {{ host.name }} ({{ host.id }}) {{ host.tables.length }} {{ host.tables.reduce( (sum, table) => sum + table.nr_of_chairs, 0 ) }}
         <button @click="onRemove(host.id)">Remove</button>
-        <button @click="onReservations(host.id)">Reservations</button>
       </li>
-    </ul>
+    </ul> -->
     <hr />
 
-    <ul>
-      <li v-for="res in reservations">
-        <div>
-          {{ res.email }} {{ res.start }} {{ res.end }} {{ res.table.nr_of_chairs }}
-          <button v-if="res.status =='pending'">Accept</button>
-          <button v-if="res.status =='pending'">Decline</button>
-          <div v-if="res.status !=='pending'">{{res.status}}</div>
-        </div>
-      </li>
-    </ul>
-  </div>
+</div>
 </template>
 
 <script>
@@ -31,7 +71,6 @@ export default {
   data() {
     return {
       hosts: [],
-      reservations: [],
       form: {
         name: "",
         description: "",
@@ -77,11 +116,6 @@ export default {
         .delete("/hosts/" + id)
         .catch(error => console.log(error));
       this.getData();
-    },
-    async onReservations(id) {
-      console.log("reservations", id);
-      const response = await axios.get(`/hosts/${id}/reservations/`)
-      this.reservations = response.data
     },
     imageUploaded($path, index) {
       this.$set(this.form.images, index, $path);

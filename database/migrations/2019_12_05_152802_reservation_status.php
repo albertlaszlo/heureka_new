@@ -15,7 +15,7 @@ class ReservationStatus extends Migration
     {
         Schema::table('reservations', function (Blueprint $table) {
             $table->enum('status', ['pending', 'accepted', 'canceled']);
-            $table->string('name');
+            $table->string('name')->default('');
         });
     }
 
@@ -26,7 +26,9 @@ class ReservationStatus extends Migration
      */
     public function down()
     {
-        $table->dropColumn('status');
-        $table->dropColumn('name');
+        Schema::table('reservations', function (Blueprint $table) {
+            $table->dropColumn('status');
+            $table->dropColumn('name');
+        });
     }
 }

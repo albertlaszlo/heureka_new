@@ -11,25 +11,6 @@ use App\Reservation;
 class HostController extends Controller
 {
 
-    function reserve(Request $request, Host $host) {
-        $request->validate([
-            'email' => 'required|email',
-            'persons' => 'required|numeric|max:40',
-        ]);
-        
-        $table = Table::where('host_id', $host->id)
-            ->where('nr_of_chairs', '>=', $request->persons)
-            ->orderBy('nr_of_chairs')
-            // ->get();
-            ->first();
-        
-        $toCreate = $request->all();
-        $toCreate['table_id'] = $table->id;
-        $toCreate['status'] = 'pending';
-        $host->reservations()->save(new Reservation($toCreate));
-        return ['success'=> true];
-    }
-
     function freeTables(Host $host) {
         return $host->freeTables('2019-12-10 14:00:00', '2019-12-10 16:00:00');
     }

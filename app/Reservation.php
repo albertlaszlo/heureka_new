@@ -12,4 +12,9 @@ class Reservation extends Model
     {
         return $this->belongsTo('App\Host');
     }
+
+    public function table()
+    {
+        return $this->belongsTo('App\Table');
+    }
 }
