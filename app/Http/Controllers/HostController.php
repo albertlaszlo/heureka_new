@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Host;
 use App\Image;
 use App\Table;
+use App\Reservation;
 
 class HostController extends Controller
 {
@@ -13,9 +14,12 @@ class HostController extends Controller
     function reserve(Request $request, Host $host) {
         $request->validate([
             'email' => 'required|email',
-            'nrOfChairs' => 'required|numeric|max:40',
+            'persons' => 'required|numeric|max:40',
         ]);
 
+        $toCreate = $request->all();
+        $toCreate['table_id'] = 1;
+        $host->reservations()->save(new Reservation($toCreate));
         return ['success'=> true];
     }
 
