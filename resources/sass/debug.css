@@ -1,0 +1,127 @@
+.hero-section{
+    text-align: center;
+}
+
+.app{
+    position: relative;
+    width: 375px;
+    height: 812px;
+    background: #2C2C2C;
+    /*background: url(https://www.google.com/url?sa=i&source=images&cd=&ved=2ahUKEwifhtmQ-PjlAhXHY1AKHf_5CMgQjRx6BAgBEAQ&url=https%3A%2F%2Fwww.northkentcleaning.co.uk%2Fhow-cleanliness-and-sanitation-affect-the-visitor-experience-in-hotels%2Fgerson-repreza-cepdpeialqm-unsplash%2F&psig=AOvVaw3LpqNMoGqSoE4rD3zXt10W&ust=1574344412315134)*/
+}
+/*
+.search-form-section{
+    position: absolute;
+    width: 375px;
+    height: 520px;
+    left: 0px;
+    top: 413px;
+    background-color: #2C2C2C;
+    border-radius: 25px 25px 0px 0px;
+}*/
+
+
+
+
+
+.hero-section{
+    position: absolute;
+    width: 314px;
+    height: 94px;
+    left: 30px;
+    top: 128px;
+    font-family: Nunito, sans-serif;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 36px;
+    line-height: 130%;
+    text-align: center;
+    letter-spacing: -0.02em;
+    color: #FFFFFF;
+}
+
+.search-form-section p{
+    position: absolute;
+    height: 22px;
+    left: 19px;
+    right: 18px;
+    top: 434px;
+    font-family: Nunito, sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 22px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    letter-spacing: -0.02em;
+    color: #999999;
+    
+}
+
+.time_and_date-wrapper{
+    position: absolute;
+    width: 340px;
+    height: 50px;
+    left: 17px;
+    top: 500px;
+}
+
+.time-selector{
+    
+    background: #DFDEDE;
+    opacity: 0.1;;
+    border-radius: 10px;
+}
+
+.date-selector{
+    height: 50px;
+    background: #DFDEDE;
+    opacity: 0.1;
+    border-radius: 10px;
+}
+
+.search-form-section button{
+    position: absolute;
+    background: linear-gradient(99.47deg, #F8A170 14.73%, #FFCD61 97.52%);
+    border-radius: 20px;
+    width: 338px;
+    height: 70px;
+    left: 19px;
+    top: 709px;
+    font-family: Nunito;
+    font-style: normal;
+    font-weight: 800;
+    font-size: 24px;
+    line-height: 33px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    letter-spacing: -0.02em;
+    color: #FFFFFF;
+}
+
+.valaszt{
+    position: absolute;
+    width: 340px;
+    height: 50px;
+    left: 17px;
+    top: 629px;
+    opacity: 0.1;
+    border-radius: 10px;
+    background: #DFDEDE;
+    font-family: Nunito;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 22px;
+    display: flex;
+    align-items: center;
+    letter-spacing: -0.02em;   
+}
+
+
+
+
+
+ 

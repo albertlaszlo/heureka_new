@@ -17,8 +17,11 @@ Route::post('/hosts', 'HostController@create');
 // Route::patch('/hosts/{id}', 'HostController@update');
 Route::delete('/hosts/{host}', 'HostController@delete');
 
-Route::get('/hosts/{host}/free-tables', 'HostController@freeTables');
-Route::post('/hosts/{host}/reserve', 'HostController@reserve');
+// Route::get('/hosts/{host}/free-tables', 'HostController@freeTables');
+
+Route::post('/hosts/{host}/reserve', 'ReservationController@reserve');
+Route::get('/hosts/{host}/reservations', 'ReservationController@index');
+Route::get('/reservations/{reservation}', 'ReservationController@get');
 
 Route::post('/fileUpload', 'HostController@fileUpload');
 

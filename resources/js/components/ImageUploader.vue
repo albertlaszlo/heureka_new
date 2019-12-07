@@ -2,7 +2,7 @@
   <div>
     <label></label>
     <input type="file" @change="onFileChanged" />
-    <img v-if="path" :src="'storage/'+path" height="42" width="42" />
+    <img v-if="path" :src="'http://127.0.0.1:8000/storage/'+path" height="42" width="42" />
     <button @click="$emit('imageRemoved')">Remove</button>
     <br />
   </div>

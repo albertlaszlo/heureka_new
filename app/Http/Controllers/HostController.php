@@ -11,21 +11,9 @@ use App\Reservation;
 class HostController extends Controller
 {
 
-    function reserve(Request $request, Host $host) {
-        $request->validate([
-            'email' => 'required|email',
-            'persons' => 'required|numeric|max:40',
-        ]);
-
-        $toCreate = $request->all();
-        $toCreate['table_id'] = 1;
-        $host->reservations()->save(new Reservation($toCreate));
-        return ['success'=> true];
-    }
-
-    function freeTables(Host $host) {
-        return $host->freeTables('2019-12-10 14:00:00', '2019-12-10 16:00:00');
-    }
+    // function freeTables(Host $host) {
+    //     return $host->freeTables('2019-12-10 14:00:00', '2019-12-10 16:00:00');
+    // }
 
     function index(Request $request) {
         return Host::with(['tables', 'images'])->get();

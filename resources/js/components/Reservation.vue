@@ -5,9 +5,7 @@
         <label>Email</label>
         <input v-model="form.email" />
         <span v-if="errors.email">
-        <!-- <span v-for="error in errors.email">{{ error }}</span> -->
         </span>
-
         <pre>
         {{ form }}
         </pre>
@@ -42,7 +40,7 @@ export default {
     async onSubmit() {
       try {
         const res = await axios.post(`/hosts/${this.$route.params.id}/reserve`, this.form);
-        console.log("RES:", res);
+        this.$router.push({name: "summary", params: {id:res.data.id}});
       } catch (error) {
         this.errors = error.response.data.errors;
       }
@@ -51,6 +49,3 @@ export default {
 }
 
 </script>
-
-<style>
-</style>
