@@ -20,12 +20,12 @@
               <div class="image">
                 <!-- <img src="http://informatiadeiasi.ro/wp-content/uploads/2018/07/restaurant.jpg" alt="image" width="100%" height="100%">  -->
                 <!-- <img :src="'http://127.0.0.1:8000/storage/'+this.form.hosts[0].images[0].image" alt="image" width="100%" height="100%"> -->
-
+                <img :src="'http://127.0.0.1:8000/storage/'+host.images[0].image" alt="image" width="100%" height="100%">
               </div>
               <div class="logo">
+                <img :src="'http://127.0.0.1:8000/storage/'+host.logo" alt="image" width="94px" height="94px">
                 <!-- {{form.hosts.logo}} -->
-                <img src="https://via.placeholder.com/94.png" alt="logo">
-                 <!-- <img :src="'http://127.0.0.1:8000/storage/'+this.form.hosts[0].logo" alt="image" width="94px" height="94px"> -->
+                
               </div>
             </div>
 
@@ -35,10 +35,14 @@
                       <button>  Back </button>
                   </div>
                   <h1>
+                    {{host.name}}
                     <!-- {{this.form.hosts[0].name}} -->
                      </h1>
                 </div>
-            <h2>Helyseg neve
+            <h2>
+              {{host.city}} <br/>
+              {{host.description}}
+              
               <!-- {{form.hosts}} -->
               <!-- {{this.form.hosts[0].name}} -->
               <!-- {{$route.params}} -->
@@ -71,7 +75,8 @@
             </div>
             <div class="time_and_date-wrapper_2">
               <div class="date-selector_2">
-                <input type="date">
+                <!-- {{form.day}} -->
+                <input value="{{form.day}}" disabled>
               </div>
               <div class="time-selector_2">
                 <div class="time-selector_start_2">
@@ -136,7 +141,7 @@ export default {
     this.form = { ...this.form, ...JSON.parse(localStorage.getItem('heureka_data'))};
     const res = await axios.get(`/hosts/${this.$route.params.id}`, this.hosts);
     this.host = res.data;
-    console.log($route.params.id);
+   
   },
   methods: {
     async onSubmit() {
