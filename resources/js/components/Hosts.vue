@@ -5,7 +5,7 @@
       <div class="find-pubs">
         <div class="app-header">
           <div class="home-button">
-              <a href=""> <img src="Combined Shape.png" alt="home-button" width="20px" height="20px"> </a>
+              <a href="http://127.0.0.1:8000/"> <img src="Combined Shape.png" alt="home-button" width="20px" height="20px"> </a>
           </div>
           <h1> Pubee </h1>
         </div>

@@ -27,14 +27,15 @@
       <div class="find-pubs">
         <div class="app-header">
           <div class="home-button">
-              <a href=""> <img src="Combined Shape.png" alt="home-button" width="20px" height="20px"> </a>
+              <a href="http://127.0.0.1:8000/"> <img src="Combined Shape.png" alt="home-button" width="20px" height="20px"> </a>
           </div>
           
             <h1> Pubee </h1>
           
         </div>
         <div class="logo">
-          <img src="https://via.placeholder.com/94.png" alt="logo">
+          <img :src="'http://127.0.0.1:8000/storage/'+summary.host.logo" alt="logo" width="94px" height="94px">
+          <!-- <img src="https://via.placeholder.com/94.png" alt="logo"> -->
         </div>
         <h2> 
           {{summary.host.name}}
@@ -54,12 +55,16 @@
               Email:
               {{summary.email}}
               </h4>
+
+            <h4>
+            Nap: {{summary.start.substring(0,10)}}
+            </h4>
             <h4>Erkezesi ido:
-              {{summary.start}}
+              {{summary.start.substring(11,16)}}
             </h4>
 
             <h4>Tavozasi ido:
-                {{summary.end}}
+               {{summary.end.substring(11,16)}}
             </h4>
             <h4>Vendegek szama:
               {{summary.table.nr_of_chairs}}
@@ -88,6 +93,7 @@ export default {
   async mounted() {
     const res = await axios.get(`/reservations/${this.$route.params.id}`, this.form);
     this.summary = res.data;
+    console.log(summary.email);
   },
   components: {
   },

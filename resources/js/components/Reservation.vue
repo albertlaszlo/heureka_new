@@ -32,7 +32,7 @@
           <form action="">
               <div class="app-header">
                   <div class="home-button">
-                      <button>  Back </button>
+                      <a href="http://127.0.0.1:8000/"> <img src="Combined Shape.png" alt="home-button" width="20px" height="20px"> </a>
                   </div>
                   <h1>
                     {{host.name}}
@@ -76,14 +76,14 @@
             <div class="time_and_date-wrapper_2">
               <div class="date-selector_2">
                 <!-- {{form.day}} -->
-                <input value="{{form.day}}" disabled>
+                <input v-model=form.day disabled>
               </div>
               <div class="time-selector_2">
                 <div class="time-selector_start_2">
-                  <input type="time">
+                  <input :value="form.start.substring(11,16)" disabled>
                 </div>
                 <div class="time-selector_end_2">
-                    <input type="time">
+                    <input :value="form.end.substring(11,16)" disabled>
                 </div>
               </div>
             </div>
