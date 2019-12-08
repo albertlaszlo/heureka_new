@@ -22,7 +22,7 @@ Route::delete('/hosts/{host}', 'HostController@delete');
 Route::post('/hosts/{host}/reserve', 'ReservationController@reserve');
 Route::get('/hosts/{host}/reservations', 'ReservationController@index');
 Route::get('/reservations/{reservation}', 'ReservationController@get');
-Route::get('/host/{hosts}', 'HostController@get');
+Route::get('/hosts/{host}', 'HostController@get');
 
 Route::post('/fileUpload', 'HostController@fileUpload');
 

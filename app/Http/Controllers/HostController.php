@@ -81,7 +81,7 @@ class HostController extends Controller
         ];
     }
     function get(Request $request, Host $host) {
-        $host->load('host');
+        $host->load('images');
         return $host;
     }
 }

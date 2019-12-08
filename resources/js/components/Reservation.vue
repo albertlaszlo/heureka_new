@@ -14,16 +14,13 @@
   </div> -->
   <div id="description_page">
   <div class="app">
-      
-        
 
       <div class="search-form-section_2 section">
-          
           <div class="pictures">
               <div class="image">
                 <!-- <img src="http://informatiadeiasi.ro/wp-content/uploads/2018/07/restaurant.jpg" alt="image" width="100%" height="100%">  -->
                 <!-- <img :src="'http://127.0.0.1:8000/storage/'+this.form.hosts[0].images[0].image" alt="image" width="100%" height="100%"> -->
-                
+
               </div>
               <div class="logo">
                 <!-- {{form.hosts.logo}} -->
@@ -46,7 +43,7 @@
               <!-- {{this.form.hosts[0].name}} -->
               <!-- {{$route.params}} -->
             </h2>
-            
+
             <!--div class="rate-wrapper">
               <div class="rate">
                   <input type="radio" id="star5" name="rate" value="5" />
@@ -61,9 +58,9 @@
                   <label for="star1" title="text">1 star</label>
                 </div>
             </div -->
-            
 
-            
+
+
              <form v-on:submit.prevent="onSubmit">
             <!-- <h3> Type, Distance, $$$</h3> -->
             <!-- <div class="name-input">
@@ -96,7 +93,7 @@
             </div>
             <div class="button_2">
               <button>
-               Foglalas 
+               Foglalas
 
               </button>
             </div>
@@ -104,6 +101,11 @@
           </form>
       </div>
     </div>
+
+    <pre>
+    {{ host }}
+    </pre>
+
     </div>
 </template>
 
@@ -113,7 +115,7 @@ import axios from "axios";
 export default {
   data() {
     return {
-      hosts: [],
+      host: {},
       // summary: {
       //    host: {},
       // },
@@ -125,15 +127,15 @@ export default {
         sdf: 'dsf',
         email: "email@email.com",
         persons: 1,
-        
+
       },
       errors: {}
     };
   },
-  mounted() {
+  async mounted() {
     this.form = { ...this.form, ...JSON.parse(localStorage.getItem('heureka_data'))};
-    const res = await axios.get(`/host/${this.$route.params.id}`, this.hosts);
-    this.hosts = res.data;
+    const res = await axios.get(`/hosts/${this.$route.params.id}`, this.hosts);
+    this.host = res.data;
     console.log($route.params.id);
   },
   methods: {
@@ -157,7 +159,7 @@ div#description_page{
 }
 
 .app-header{
-    
+
     position: absolute;
     top: 0;
     left: 0;
@@ -225,7 +227,7 @@ div#description_page{
     margin: 0;
 }
 
-#description_page input, 
+#description_page input,
 #description_page select,
 #description_page .button_2 button{
     width: 100%;
@@ -234,7 +236,7 @@ div#description_page{
     border-radius: 10px;
 }
 
-#description_page input, 
+#description_page input,
 #description_page select{
     background: rgba(223, 222, 222, 0.1);
     background-color: #f4f4f4;
@@ -296,11 +298,11 @@ div#description_page{
     content: '★ ';
 }
 .rate > input:checked ~ label {
-    color: #ffc700;    
+    color: #ffc700;
 }
 .rate:not(:checked) > label:hover,
 .rate:not(:checked) > label:hover ~ label {
-    color: #deb217;  
+    color: #deb217;
 }
 .rate > input:checked + label:hover,
 .rate > input:checked + label:hover ~ label,
