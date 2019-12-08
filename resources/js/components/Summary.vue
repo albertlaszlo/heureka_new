@@ -1,55 +1,39 @@
 <template>
-    <!-- <div>
+<div id="feedback_page">
+<!--     <div>
         Summary {{ $route.params.id }}
 
         <pre>
             {{ summary }}
         </pre>
-    </div> -->
-  
-<div id="feedback_page">
-  <meta charset="utf-8">
-  <title></title>
-  <meta name="description" content="">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-
-  <link rel="manifest" href="site.webmanifest">
-  <link rel="apple-touch-icon" href="icon.png">
-  <!-- Place favicon.ico in the root directory -->
-
-  <link rel="stylesheet" href="css/normalize.css">
-  <link rel="stylesheet" href="css/main.css">
-  <link rel="stylesheet" href="css/feedback-page.css">
-
-  <meta name="theme-color" content="#fafafa">
-
+    </div>-->
  <div class="app">
       <div class="find-pubs">
         <div class="app-header">
           <div class="home-button">
               <a href="http://127.0.0.1:8000/"> <img src="Combined Shape.png" alt="home-button" width="20px" height="20px"> </a>
           </div>
-          
+
             <h1> Pubee </h1>
-          
+
         </div>
         <div class="logo">
           <img :src="'http://127.0.0.1:8000/storage/'+summary.host.logo" alt="logo" width="94px" height="94px">
           <!-- <img src="https://via.placeholder.com/94.png" alt="logo"> -->
         </div>
-        <h2> 
+        <h2>
           {{summary.host.name}}
           <!-- Host neve  -->
         </h2>
         <br>
         <h2> Koszunjuk! </h2>
         <h3> Az asztalfoglalasi kerelmet sikeresen elkuldtuk.
-          
+
         </h3>
         <div class="box">
           <div class="texts">
-            <!-- <h4>Nev: 
-              
+            <!-- <h4>Nev:
+
             </h4> -->
             <h4>
               Email:
@@ -72,7 +56,7 @@
           </div>
         </div>
       </div>
-        
+
     </div>
     </div>
 </template>
@@ -87,13 +71,16 @@ export default {
         summary: {
           table: {},
           host: {},
+          start: '',
+          end: '',
         },
     }
   },
   async mounted() {
     const res = await axios.get(`/reservations/${this.$route.params.id}`, this.form);
     this.summary = res.data;
-    console.log(summary.email);
+
+    console.log(this.summary.email);
   },
   components: {
   },
@@ -103,7 +90,7 @@ export default {
 </script>
 
 <style>
-div#feedback_page{ 
+div#feedback_page{
     font-family: Nunito, sans-serif;
     background-size: 100vw;
     background-color: #fff;
@@ -128,7 +115,7 @@ div#feedback_page{
 .home-button{
     position: absolute;
     top: 40%;
-    
+
 }
 
 
