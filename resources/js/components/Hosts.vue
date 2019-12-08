@@ -92,9 +92,12 @@ export default {
         localStorage.setItem('heureka_data', JSON.stringify({... this.form, ...{
             start: `${this.form.day} ${this.form.start}:00`,
             end: `${this.form.day} ${this.form.end}:00`,
+           
         }}));
         // this.$router.go('reservations');
         this.$router.push({name: "reservation", params: {id}});
+        // this.$router.push({name: "reservation", hosts: {id}});
+
     },
     hasFreeTable(host) {
         if (this.form.persons < 1) {
@@ -105,7 +108,7 @@ export default {
     },
     async onSearch() {
       try {
-        console.log('on search')
+        // console.log(host.images)
         const response = await axios
           .get("/hosts/search", {
             params: {
@@ -113,6 +116,7 @@ export default {
               start: `${this.form.day} ${this.form.start}:00`,
               end: `${this.form.day} ${this.form.end}:00`,
               persons: this.form.persons,
+              // images: 'http://127.0.0.1:8000/storage/'+host.images[0].image,
             }
           })
         this.hosts = response.data;

@@ -54,7 +54,7 @@
               Email:
               {{summary.email}}
               </h4>
-            <h4>Erkezes ido:
+            <h4>Erkezesi ido:
               {{summary.start}}
             </h4>
 

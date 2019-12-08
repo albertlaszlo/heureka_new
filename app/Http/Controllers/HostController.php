@@ -80,4 +80,8 @@ class HostController extends Controller
             'success' => false
         ];
     }
+    function get(Request $request, Host $host) {
+        $host->load('host');
+        return $host;
+    }
 }
